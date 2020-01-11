@@ -8,7 +8,11 @@ const success = chalk.green;
 
 
 const getNotes = () => {
-    return "Your Notes ...";
+    const notes = loadNotes();
+    if (notes.length===0)
+        console.log(error("No Notes"));
+    else
+        console.table(notes);
 };
 
 const addNotes = (title, body) => {
@@ -34,7 +38,7 @@ const removeNotes = (title) => {
         console.log(success("Note Removed Successfully!!!"));
         saveNotes(newNotes);
     } else {
-        console.log(error("no note with title: "+ title +" didn't found!!!"));
+        console.log(error("no note with title: " + title + " didn't found!!!"));
     }
 };
 
