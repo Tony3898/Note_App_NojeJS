@@ -2,7 +2,7 @@
 const yargs = require("yargs");
 const notes = require("./notes");
 
-//console.log(getNotes);
+//setting up yarn for different
 
 yargs.command({
     command: "add",
@@ -27,8 +27,15 @@ yargs.command({
 yargs.command({
     command: "remove",
     describe: "Removing note",
-    handler: () => {
-        console.log("Removing Note");
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) => {
+        notes.removeNotes(argv.title);
     }
 })
 
